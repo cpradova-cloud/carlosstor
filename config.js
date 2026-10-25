@@ -1,6 +1,6 @@
 // EDITA ESTE ARCHIVO para cambiar textos, productos, fotos, pagos, redes y contacto.
 // Las fotos pueden ser enlaces de imagen o archivos que guardes en la carpeta images/.
-window.siteConfig = {
+const siteConfig = {
   brand: 'carlosstor',
   announcement: 'ENVÍOS A TODO EL PERÚ · COMPRA FÁCIL POR WHATSAPP',
   hero: {
@@ -71,3 +71,6 @@ window.siteConfig = {
   },
   footer: '© {year} carlosstor.'
 };
+
+if (typeof window !== 'undefined') window.siteConfig = siteConfig;
+if (typeof module !== 'undefined' && module.exports) module.exports = siteConfig;

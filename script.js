@@ -1,5 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const config = window.siteConfig;
+document.addEventListener('DOMContentLoaded', async () => {
+  let config = window.siteConfig;
+  try {
+    const response = await fetch('/api/content', { cache: 'no-store' });
+    if (response.ok) config = await response.json();
+  } catch {
+    // The bundled config remains available if the content API is unavailable.
+  }
   if (!config) return;
 
   applyTheme(config.theme);

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#17221d" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Administración | carlosstor</title>
+    <link rel="stylesheet" href="admin.css" />
+    <script src="admin.js" defer></script>
+  </head>
+  <body>
+    <header class="admin-header">
+      <a class="brand" href="/" aria-label="Volver a la tienda"><span class="brand-mark">c.</span><span>carlosstor</span></a>
+      <span class="header-label">Administración</span>
+      <a class="store-link" href="/" target="_blank" rel="noreferrer">Ver tienda <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main class="admin-main">
+      <section id="login-view" class="login-view" aria-labelledby="login-title">
+        <div class="login-intro">
+          <p class="eyebrow">Área privada</p>
+          <h1 id="login-title">Administrar tienda</h1>
+          <p>Ingresa para editar el catálogo de perfumes.</p>
+        </div>
+        <form id="login-form" class="login-form">
+          <label for="admin-id">ID de administrador</label>
+          <input id="admin-id" name="id" autocomplete="username" required maxlength="80" />
+          <label for="admin-password">Contraseña</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required maxlength="200" />
+          <button class="button button-primary" type="submit">Ingresar</button>
+          <p id="login-status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="editor-view" class="editor-view" aria-labelledby="editor-title" hidden>
+        <div class="editor-heading">
+          <div>
+            <p class="eyebrow">Catálogo</p>
+            <h1 id="editor-title">Tus perfumes</h1>
+            <p id="product-count" class="subheading"></p>
+          </div>
+          <div class="heading-actions">
+            <button id="add-product" class="button button-secondary" type="button"><span aria-hidden="true">＋</span> Agregar perfume</button>
+            <button id="logout-button" class="button button-quiet" type="button">Cerrar sesión</button>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <span id="editor-status" class="status" role="status" aria-live="polite">Los cambios aún no se han guardado.</span>
+          <div class="save-actions">
+            <button id="discard-changes" class="button button-quiet" type="button">Descartar</button>
+            <button id="save-changes" class="button button-primary" type="button">Guardar cambios</button>
+          </div>
+        </div>
+
+        <div id="products-list" class="products-list"></div>
+      </section>
+    </main>
+  </body>
+</html>

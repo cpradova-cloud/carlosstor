@@ -1,0 +1,14 @@
+{
+  "name": "carlosstor",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "build": "node build.cjs",
+    "test": "node --test",
+    "check": "node --check server.js && node --check build.cjs && node --check script.js && node --check admin.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.6"
+  }
+}
