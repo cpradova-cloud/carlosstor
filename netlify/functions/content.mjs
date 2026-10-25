@@ -1,3 +1,4 @@
-import adapter from '../../lib/netlify-handler.cjs';
+import handleNetlifyRequest from '../../lib/netlify-fetch-handler.mjs';
 
-export const handler = adapter.createNetlifyHandler('/api/content');
+export default handleNetlifyRequest;
+export const config = { path: '/api/content' };

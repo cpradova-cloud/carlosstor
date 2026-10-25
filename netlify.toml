@@ -11,21 +11,6 @@
   to = "/admin.html"
   status = 200
 
-[[redirects]]
-  from = "/api/content"
-  to = "/.netlify/functions/content"
-  status = 200
-
-[[redirects]]
-  from = "/api/admin"
-  to = "/.netlify/functions/admin"
-  status = 200
-
-[[redirects]]
-  from = "/api/images"
-  to = "/.netlify/functions/images"
-  status = 200
-
 [[headers]]
   for = "/*"
   [headers.values]
