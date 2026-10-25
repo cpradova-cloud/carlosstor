@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f3ed" />
+    <meta name="description" content="Descubre tu próxima fragancia en carlos.store." />
+    <title>carlos.store | Perfumería</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="live-reload.js" defer></script>
+  </head>
+  <body>
+    <div class="announcement" id="announcement"></div>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="#inicio" aria-label="Inicio"><span class="wordmark-icon">c.</span><span id="brand-name">carlos.store</span></a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="#catalogo">Perfumes</a><a href="#nosotros">Nuestra esencia</a><a href="#pagos">Pagos</a>
+        </nav>
+        <a class="bag-link" href="#catalogo"><span class="bag-icon" aria-hidden="true">⌕</span><span>Explorar</span></a>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-eyebrow"></p>
+          <h1 id="hero-title"></h1>
+          <p class="hero-description" id="hero-description"></p>
+          <a class="button button-dark" href="#catalogo"><span id="hero-button"></span><span aria-hidden="true">↗</span></a>
+          <div class="hero-note"><span class="note-mark">✳</span><span id="hero-note"></span></div>
+        </div>
+        <div class="hero-image-wrap">
+          <img id="hero-image" class="hero-image" alt="Perfume destacado" />
+          <div class="image-caption"><span id="featured-kicker"></span><strong id="featured-name"></strong></div>
+          <span class="image-index">01 / 04</span>
+        </div>
+        <div class="hero-side-label" id="hero-side-label"></div>
+      </section>
+
+      <section class="trust-strip" aria-label="Beneficios">
+        <div><span class="trust-symbol">✳</span><span id="benefit-one"></span></div>
+        <div><span class="trust-symbol">↗</span><span id="benefit-two"></span></div>
+        <div><span class="trust-symbol">◉</span><span id="benefit-three"></span></div>
+      </section>
+
+      <section id="catalogo" class="catalog-section">
+        <div class="section-top">
+          <div><p class="eyebrow" id="catalog-eyebrow"></p><h2 id="catalog-title"></h2></div>
+          <label class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Buscar perfume" aria-label="Buscar perfumes" /><kbd>/</kbd></label>
+        </div>
+        <div id="category-list" class="category-list" aria-label="Filtrar por categoría"></div>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+        <p id="empty-state" class="empty-state" hidden>No encontramos perfumes con esa búsqueda.</p>
+      </section>
+
+      <section id="nosotros" class="editorial-section">
+        <div class="editorial-image"><img id="editorial-image" alt="Detalle de la colección" /></div>
+        <div class="editorial-copy"><p class="eyebrow" id="editorial-eyebrow"></p><h2 id="editorial-title"></h2><p id="editorial-description"></p><a id="editorial-link" class="text-link" href="#catalogo"><span id="editorial-link-label"></span><span aria-hidden="true">↗</span></a></div>
+      </section>
+
+      <section id="pagos" class="payment-section">
+        <div class="payment-intro"><p class="eyebrow" id="payment-eyebrow"></p><h2 id="payment-title"></h2><p id="payment-description"></p></div>
+        <div id="payment-list" class="payment-list"></div>
+        <p class="payment-footnote" id="payment-footnote"></p>
+      </section>
+
+      <section class="social-section">
+        <p class="eyebrow" id="social-eyebrow"></p><h2 id="social-title"></h2>
+        <div id="social-links" class="social-links"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="wordmark footer-mark" href="#inicio"><span class="wordmark-icon">c.</span><span id="footer-brand"></span></a><p id="footer-copy"></p><a class="back-top" href="#inicio">Volver arriba ↑</a></footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
