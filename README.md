@@ -8,7 +8,7 @@ Tienda de perfumes en español con búsqueda, filtros por categoría, consultas 
 2. Abre `config.js` para cambiar textos, marca, pagos y enlaces.
 3. Inicia la vista previa desde una terminal integrada con `node server.js`.
 4. Abre `http://localhost:5173` en el navegador integrado de VS Code. Al guardar archivos, la página se actualiza sola.
-5. Abre `http://localhost:5173/admin` para administrar el catálogo. En esta máquina las credenciales de prueba son ID `carlos` y contraseña `12345`.
+5. En la tienda pulsa **Administrar** para abrir el panel dentro de la misma página (`http://localhost:5173/#admin`). En esta máquina las credenciales de prueba son ID `carlos` y contraseña `12345`.
 6. Para ver el código y la página juntos, arrastra la pestaña del navegador integrado hacia un lado del editor o usa **Ver > Editor dividido**.
 
 El ID y la contraseña anteriores son solo para pruebas locales. `.env` está ignorado por Git y nunca debe subirse. Para detener el servidor, vuelve a la terminal y presiona `Ctrl+C`.
@@ -33,7 +33,7 @@ El sitio requiere Functions y Netlify Blobs; `netlify.toml` ya define las rutas 
 - `ADMIN_PASSWORD`: contraseña exclusiva de producción de al menos 14 caracteres.
 - `SESSION_SECRET`: valor aleatorio de al menos 32 bytes.
 
-No uses `12345` en Netlify. Si falta una variable o la contraseña es débil, la API administrativa queda deshabilitada. Después de guardar las variables, publica un nuevo deploy. El catálogo guardado y las imágenes se mantienen en Netlify Blobs entre deploys.
+No uses `12345` en Netlify. Si falta una variable o la contraseña es débil, la API administrativa queda deshabilitada. Después de guardar las variables, publica un nuevo deploy. El catálogo guardado y las imágenes se mantienen en Netlify Blobs entre deploys. En producción, abre el panel desde la tienda con `https://carlosstor.netlify.app/#admin`.
 
 Antes de actualizar en GitHub, ejecuta `npm.cmd test` y confirma que `.env` no aparezca en `git status`.
 

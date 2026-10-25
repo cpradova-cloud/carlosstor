@@ -221,6 +221,37 @@
   color: var(--paper);
 }
 
+.header-inner {
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  gap: clamp(14px, 2.4vw, 34px);
+}
+
+.admin-entry {
+  justify-self: end;
+  color: var(--lime);
+  font-size: .72rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.admin-entry:hover {
+  color: var(--coral);
+}
+
+.admin-overlay {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  background: var(--paper);
+}
+
+.admin-overlay iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .hero {
   color: var(--paper);
   background: var(--ink);
@@ -406,6 +437,15 @@
 }
 
 @media (max-width: 620px) {
+  .header-inner {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 10px;
+  }
+
+  .admin-entry {
+    font-size: .67rem;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     gap: 28px;

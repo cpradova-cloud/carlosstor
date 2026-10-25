@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderFooter(config);
   setupSearch(config.products);
   setupKeyboardSearch();
+  setupAdminRoute();
 });
 
 function applyTheme(theme = {}) {
@@ -173,6 +174,27 @@ function setupKeyboardSearch() {
       document.getElementById('product-search').focus();
     }
   });
+}
+
+function setupAdminRoute() {
+  const overlay = document.getElementById('admin-overlay');
+  const frame = document.getElementById('admin-frame');
+
+  const updateRoute = () => {
+    const isAdmin = window.location.hash === '#admin';
+    overlay.hidden = !isAdmin;
+    document.body.classList.toggle('admin-open', isAdmin);
+    if (isAdmin && frame.dataset.loaded !== 'true') {
+      frame.src = '/admin.html';
+      frame.dataset.loaded = 'true';
+    }
+    document.title = isAdmin
+      ? `${window.siteConfig.brand} | Administración`
+      : `${window.siteConfig.brand} | Perfumería`;
+  };
+
+  window.addEventListener('hashchange', updateRoute);
+  updateRoute();
 }
 
 function renderPayments(payments) {
