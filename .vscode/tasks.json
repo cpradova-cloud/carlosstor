@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "carlos.store: iniciar vista previa",
+      "label": "carlosstor: iniciar vista previa",
       "type": "shell",
       "command": "node server.js",
       "options": {
@@ -17,7 +17,7 @@
         },
         "background": {
           "activeOnStart": true,
-          "beginsPattern": "carlos.store disponible",
+          "beginsPattern": "carlosstor disponible",
           "endsPattern": "Guarda un archivo"
         }
       }

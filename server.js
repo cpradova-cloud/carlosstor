@@ -61,6 +61,6 @@ fs.watch(root, { recursive: true }, (_event, filename) => {
 });
 
 server.listen(port, '127.0.0.1', () => {
-  console.log(`carlos.store disponible en http://localhost:${port}`);
+  console.log(`carlosstor disponible en http://localhost:${port}`);
   console.log('Guarda un archivo para actualizar la vista previa automáticamente.');
 });

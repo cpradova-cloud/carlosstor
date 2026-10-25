@@ -1,7 +1,7 @@
 // EDITA ESTE ARCHIVO para cambiar textos, productos, fotos, pagos, redes y contacto.
 // Las fotos pueden ser enlaces de imagen o archivos que guardes en la carpeta images/.
 window.siteConfig = {
-  brand: 'carlos.store',
+  brand: 'carlosstor',
   announcement: 'ENVÍOS A TODO EL PERÚ · COMPRA FÁCIL POR WHATSAPP',
   hero: {
     eyebrow: 'TU NUEVA FIRMA OLFATIVA',
@@ -69,5 +69,5 @@ window.siteConfig = {
     whatsappNumber: '986570478', // Escribe tu número con código de país y sin + ni espacios, por ejemplo 51987654321.
     whatsappMessage: 'Hola, quiero más información sobre este perfume.'
   },
-  footer: '© {year} carlos prado.'
+  footer: '© {year} carlosstor.'
 };

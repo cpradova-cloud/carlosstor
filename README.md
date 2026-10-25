@@ -1,10 +1,10 @@
-# carlos.store
+# carlosstor
 
 Tienda estática de perfumes en español, con búsqueda, filtros por categoría y consultas de compra por WhatsApp. No requiere dependencias externas para funcionar localmente; se usa Node.js para la vista previa con recarga automática.
 
 ## Abrir en VS Code
 
-1. En VS Code usa **Archivo > Abrir carpeta...** y selecciona `C:\Users\Rog\Desktop\carlos.store`.
+1. En VS Code usa **Archivo > Abrir carpeta...** y selecciona la carpeta del proyecto en tu Escritorio.
 2. Abre `config.js` para cambiar el contenido de la tienda.
 3. Inicia la vista previa desde una terminal integrada con `node server.js`.
 4. Abre `http://localhost:5173` en el navegador integrado de VS Code. Al guardar archivos, la página se actualiza sola.
@@ -24,4 +24,4 @@ En `config.js` reemplaza los textos de ejemplo de pagos, redes y WhatsApp por da
 
 ## Dominio
 
-La página se prueba localmente en `http://localhost:5173`. Para que `carlos.store` abra desde Internet hace falta registrar o configurar el dominio y publicar el proyecto en un servicio de hosting; este proyecto local no activa el dominio automáticamente.
+La página se prueba localmente en `http://localhost:5173`. Para publicarla en Internet, registra un dominio completo disponible, por ejemplo `carlosstor.com` o `carlosstor.pe`, y configura el hosting. Este proyecto local no activa un dominio automáticamente.
