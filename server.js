@@ -35,7 +35,8 @@ const contentTypes = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
-  '.svg': 'image/svg+xml'
+  '.svg': 'image/svg+xml',
+  '.mp4': 'video/mp4'
 };
 const storage = createLocalStorage(root, siteConfig);
 const adminService = createAdminService({ storage, defaults: siteConfig });
@@ -77,8 +78,10 @@ const server = http.createServer((request, response) => {
   const filePath = path.resolve(root, `.${relativePath}`);
   const publicFile = publicFiles.has(path.relative(root, filePath));
   const imageDirectory = path.join(root, 'images');
+  const videoDirectory = path.join(root, 'videos');
   const publicImage = filePath.startsWith(`${imageDirectory}${path.sep}`);
-  if (!publicFile && !publicImage) {
+  const publicVideo = filePath.startsWith(`${videoDirectory}${path.sep}`);
+  if (!publicFile && !publicImage && !publicVideo) {
     sendText(response, 404, 'Not found');
     return;
   }

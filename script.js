@@ -41,6 +41,34 @@ function setImage(id, src, alt) {
   }
 }
 
+function setVideo(id, src, poster, alt) {
+  const video = document.getElementById(id);
+  if (!video) return;
+  if (src) {
+    video.src = src;
+    video.poster = poster || '';
+    video.alt = alt || '';
+    video.hidden = false;
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.play().catch(() => {});
+    const image = document.getElementById('editorial-image');
+    if (image) image.hidden = true;
+  } else {
+    video.pause();
+    video.removeAttribute('src');
+    video.hidden = true;
+    const image = document.getElementById('editorial-image');
+    if (image) {
+      image.hidden = false;
+      image.src = poster || '';
+      image.alt = alt || '';
+    }
+  }
+}
+
 function renderText(config) {
   document.title = `${config.brand} | Perfumería`;
   setText('announcement', config.announcement);
@@ -65,6 +93,7 @@ function renderText(config) {
   setText('editorial-description', config.editorial.description);
   setText('editorial-link-label', config.editorial.linkLabel);
   setImage('editorial-image', config.editorial.image, config.editorial.title);
+  setVideo('editorial-video', config.editorial.video, config.editorial.image, config.editorial.title);
   setText('payment-eyebrow', config.payments.eyebrow);
   setText('payment-title', config.payments.title);
   setText('payment-description', config.payments.description);
@@ -132,7 +161,8 @@ function renderProducts(products) {
     const buy = document.createElement('a');
     buy.className = 'product-buy';
     buy.href = '#';
-    buy.innerHTML = '<span>Consultar por WhatsApp</span><span aria-hidden="true">↗</span>';
+    buy.setAttribute('aria-label', `Consultar ${product.name} por WhatsApp`);
+    buy.innerHTML = '<span class="product-buy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.2 7.1L4 20l1.1-3.9a8.2 8.2 0 1 1 15.1-4.3Z"/><path d="M8.9 8.3c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.3 1.6 2.2 2 .2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.2.1.4.3.4.5 0 .4-.2 1-.6 1.3-.4.4-1 .6-1.6.5-1-.1-2.4-.7-3.8-2-1.2-1.1-2-2.5-2.2-3.5-.1-.7.1-1.3.4-1.7Z"/></svg></span><span class="product-buy-divider" aria-hidden="true"></span><span class="product-buy-label">Consultar por WhatsApp</span><span class="product-buy-arrow" aria-hidden="true">→</span>';
     buy.addEventListener('click', (event) => {
       event.preventDefault();
       openWhatsApp(product);

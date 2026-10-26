@@ -47,7 +47,8 @@ const siteConfig = {
     title: 'El detalle que se queda contigo.',
     description: 'Elegimos cada perfume pensando en cómo te hace sentir. Explora la colección, encuentra el tuyo y haz tu pedido de manera directa y sencilla.',
     linkLabel: 'Ver toda la colección',
-    image: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=1200&q=85'
+    image: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=1200&q=85',
+    video: '/videos/perfume.mp4'
   },
   payments: {
     eyebrow: 'PAGO SIMPLE Y SEGURO',

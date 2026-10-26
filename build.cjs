@@ -25,6 +25,12 @@ async function build() {
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
   }
+
+  try {
+    await fs.cp(path.join(root, 'videos'), path.join(output, 'videos'), { recursive: true });
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
 }
 
 build().catch((error) => {
