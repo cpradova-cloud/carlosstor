@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   applyTheme(config.theme);
   renderText(config);
-  renderCategories(config.products, config.catalog.allLabel);
+  renderFilters(config.products, config.catalog.allLabel);
   renderProducts(config.products);
   renderPayments(config.payments);
   renderSocials(config.socials);
   renderFooter(config);
-  setupSearch(config.products);
+  setupSearch(config.products, config.catalog.allLabel);
   setupKeyboardSearch();
   setupAdminRoute();
 });
@@ -102,19 +102,48 @@ function renderText(config) {
   setText('social-title', config.socials.title);
 }
 
-function renderCategories(products, allLabel) {
+function renderFilters(products, allLabel) {
+  const genderContainer = document.getElementById('gender-list');
   const container = document.getElementById('category-list');
+  const categoryRow = container.closest('.catalog-filter-row');
+  const filters = { gender: allLabel, category: '' };
   const categories = [...new Set(products.map((product) => product.category))];
-  [allLabel, ...categories].forEach((category, index) => {
+  categoryRow.hidden = true;
+  const applyFilters = () => filterProducts(
+    products,
+    document.getElementById('product-search').value,
+    filters.gender,
+    filters.category,
+    allLabel
+  );
+
+  renderFilterButtons(genderContainer, ['Todos', 'Hombre', 'Mujer', 'Unisex'], 'gender', filters, applyFilters, () => {
+    const showAromas = filters.gender !== allLabel;
+    categoryRow.hidden = !showAromas;
+    genderContainer.querySelectorAll('.category-button').forEach((button) => button.setAttribute('aria-expanded', String(showAromas)));
+    filters.category = '';
+    container.querySelector('.active')?.classList.remove('active');
+  });
+  renderFilterButtons(container, categories, 'category', filters, applyFilters);
+}
+
+function renderFilterButtons(container, values, key, filters, applyFilters, onSelect) {
+  values.forEach((value) => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = `category-button${index === 0 ? ' active' : ''}`;
-    button.textContent = category;
-    button.dataset.category = category;
+    button.className = `category-button${filters[key] === value ? ' active' : ''}`;
+    button.textContent = value;
+    button.dataset[key] = value;
+    if (key === 'gender') {
+      button.setAttribute('aria-controls', 'aroma-filter-row');
+      button.setAttribute('aria-expanded', 'false');
+    }
     button.addEventListener('click', () => {
       container.querySelector('.active')?.classList.remove('active');
       button.classList.add('active');
-      filterProducts(products, document.getElementById('product-search').value, category, allLabel);
+      filters[key] = value;
+      onSelect?.(value);
+      applyFilters();
     });
     container.append(button);
   });
@@ -128,6 +157,7 @@ function renderProducts(products) {
     article.className = 'product-card';
     article.dataset.name = `${product.name} ${product.category} ${product.description}`.toLocaleLowerCase('es');
     article.dataset.category = product.category;
+    article.dataset.gender = product.gender || 'Unisex';
 
     const photo = document.createElement('div');
     photo.className = 'product-photo';
@@ -177,23 +207,25 @@ function formatPrice(price) {
   return new Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(price);
 }
 
-function filterProducts(products, query, category, allLabel) {
+function filterProducts(products, query, gender, category, allLabel) {
   const normalizedQuery = query.trim().toLocaleLowerCase('es');
   let visible = 0;
   document.querySelectorAll('.product-card').forEach((card, index) => {
-    const matchesCategory = category === allLabel || card.dataset.category === category;
+    const matchesCategory = !category || card.dataset.category === category;
+    const matchesGender = gender === allLabel || card.dataset.gender === gender;
     const matchesQuery = card.dataset.name.includes(normalizedQuery);
-    card.hidden = !(matchesCategory && matchesQuery);
+    card.hidden = !(matchesGender && matchesCategory && matchesQuery);
     if (!card.hidden) visible += 1;
   });
   document.getElementById('empty-state').hidden = visible > 0;
 }
 
-function setupSearch(products) {
+function setupSearch(products, allLabel) {
   const input = document.getElementById('product-search');
   input.addEventListener('input', () => {
-    const activeCategory = document.querySelector('.category-button.active')?.dataset.category;
-    filterProducts(products, input.value, activeCategory, window.siteConfig.catalog.allLabel);
+    const activeCategory = document.querySelector('#category-list .category-button.active')?.dataset.category || '';
+    const activeGender = document.querySelector('#gender-list .category-button.active')?.dataset.gender || allLabel;
+    filterProducts(products, input.value, activeGender, activeCategory, allLabel);
   });
 }
 

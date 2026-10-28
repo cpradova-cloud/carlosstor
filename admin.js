@@ -98,6 +98,7 @@ function createProductEditor(product, index) {
   fields.className = 'product-fields';
   fields.append(
     createField('Nombre', 'name', product.name, index),
+    createField('Público', 'gender', product.gender || 'Unisex', index, 'select'),
     createField('Categoría', 'category', product.category, index),
     createField('Precio (S/)', 'price', product.price, index, 'number'),
     createField('Etiqueta', 'label', product.label, index),
@@ -123,6 +124,14 @@ function createField(label, key, value, index, type = 'text', wide = false) {
   let input;
   if (type === 'textarea') {
     input = document.createElement('textarea');
+  } else if (type === 'select') {
+    input = document.createElement('select');
+    ['Hombre', 'Mujer', 'Unisex'].forEach((optionValue) => {
+      const option = document.createElement('option');
+      option.value = optionValue;
+      option.textContent = optionValue;
+      input.append(option);
+    });
   } else {
     input = document.createElement('input');
     input.type = type;
@@ -134,7 +143,7 @@ function createField(label, key, value, index, type = 'text', wide = false) {
   }
   input.value = value ?? '';
   input.required = true;
-  input.maxLength = key === 'description' ? 280 : key === 'name' ? 80 : key === 'category' ? 40 : 32;
+  if (type !== 'select') input.maxLength = key === 'description' ? 280 : key === 'name' ? 80 : key === 'category' ? 40 : 32;
   input.addEventListener('input', () => {
     state.products[index][key] = type === 'number' ? Number(input.value) : input.value;
     setStatus(editorStatus, 'Tienes cambios sin guardar.');
@@ -158,7 +167,7 @@ function selectImage(file, index, preview) {
 }
 
 function addProduct() {
-  state.products.push({ name: '', category: 'Amaderado', label: 'Nuevo', price: 0, description: '', image: '' });
+  state.products.push({ name: '', category: 'Amaderado', gender: 'Unisex', label: 'Nuevo', price: 0, description: '', image: '' });
   renderProducts();
   setStatus(editorStatus, 'Completa los campos y selecciona una foto.');
   productsList.lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'center' });

@@ -56,7 +56,16 @@
           <div><p class="eyebrow" id="catalog-eyebrow"></p><h2 id="catalog-title"></h2></div>
           <label class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Buscar perfume" aria-label="Buscar perfumes" /><kbd>/</kbd></label>
         </div>
-        <div id="category-list" class="category-list" aria-label="Filtrar por categoría"></div>
+        <div class="catalog-filters">
+          <div class="catalog-filter-row">
+            <span class="catalog-filter-label">Para quién</span>
+            <div id="gender-list" class="category-list" aria-label="Filtrar por público"></div>
+          </div>
+          <div id="aroma-filter-row" class="catalog-filter-row">
+            <span class="catalog-filter-label">Familia olfativa</span>
+            <div id="category-list" class="category-list" aria-label="Filtrar por aroma"></div>
+          </div>
+        </div>
         <div id="product-grid" class="product-grid" aria-live="polite"></div>
         <p id="empty-state" class="empty-state" hidden>No encontramos perfumes con esa búsqueda.</p>
       </section>

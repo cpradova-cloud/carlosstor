@@ -14,7 +14,7 @@
 
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; color: var(--ink); background: var(--paper); }
-button, input, textarea { font: inherit; }
+button, input, textarea, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
 [hidden] { display: none !important; }
@@ -41,8 +41,8 @@ h1 { margin: 0; font-size: 2.5rem; line-height: 1.08; letter-spacing: -.02em; }
 .login-intro > p:last-child, .subheading { margin: 13px 0 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
 .login-form { display: grid; gap: 11px; padding: 25px; background: var(--white); border: 1px solid var(--line); }
 .login-form label, .field-label { margin-top: 8px; font-size: .75rem; font-weight: 700; }
-.login-form input, .product-fields input, .product-fields textarea { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 2px; color: var(--ink); background: var(--white); }
-.login-form input:focus, .product-fields input:focus, .product-fields textarea:focus { border-color: var(--green); outline: 2px solid rgba(41, 86, 71, .16); outline-offset: 0; }
+.login-form input, .product-fields input, .product-fields textarea, .product-fields select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 2px; color: var(--ink); background: var(--white); }
+.login-form input:focus, .product-fields input:focus, .product-fields textarea:focus, .product-fields select:focus { border-color: var(--green); outline: 2px solid rgba(41, 86, 71, .16); outline-offset: 0; }
 .button { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: 8px; padding: 0 14px; border: 1px solid transparent; border-radius: 2px; cursor: pointer; font-size: .78rem; font-weight: 700; transition: transform 140ms ease, background-color 140ms ease, border-color 140ms ease; }
 .button:active { transform: scale(.98); }
 .button:disabled { cursor: wait; opacity: .65; }

@@ -12,6 +12,7 @@ const defaults = {
   products: [{
     name: 'Perfume original',
     category: 'Floral',
+    gender: 'Unisex',
     label: 'Nuevo',
     price: 120,
     description: 'Descripción original.',
@@ -53,6 +54,14 @@ test('public content uses defaults until an administrator saves edits', async ()
   assert.equal(response.status, 200);
   assert.deepEqual(data.products, defaults.products);
   assert.equal(data.brand, 'carlosstor');
+});
+
+test('legacy saved products receive a compatible default gender', async () => {
+  const { request, state } = createFixture();
+  state.products = [{ ...defaults.products[0], gender: undefined }];
+  const response = await request('GET', '/api/content');
+  assert.equal(JSON.parse(response.body).products[0].gender, 'Unisex');
+  assert.equal(state.products[0].gender, undefined);
 });
 
 test('invalid credentials are rejected and rate-limited', async () => {
@@ -103,13 +112,19 @@ test('login, CSRF protection, and product updates work together', async () => {
   });
   assert.equal(noCsrf.status, 403);
 
-  const updatedProducts = [{ ...defaults.products[0], name: 'Perfume actualizado', price: 145 }];
+  const updatedProducts = [{ ...defaults.products[0], name: 'Perfume actualizado', price: 145, gender: 'Mujer' }];
   const update = await request('PUT', '/api/admin?op=products', {
     body: { products: updatedProducts },
     headers: { origin: 'http://localhost', cookie, 'x-csrf-token': loginData.csrf }
   });
   assert.equal(update.status, 200);
   assert.deepEqual(JSON.parse(update.body).products, updatedProducts);
+
+  const invalidGender = await request('PUT', '/api/admin?op=products', {
+    body: { products: [{ ...updatedProducts[0], gender: 'Otro' }] },
+    headers: { origin: 'http://localhost', cookie, 'x-csrf-token': loginData.csrf }
+  });
+  assert.equal(invalidGender.status, 400);
 
   const publicContent = await request('GET', '/api/content');
   assert.equal(JSON.parse(publicContent.body).products[0].name, 'Perfume actualizado');

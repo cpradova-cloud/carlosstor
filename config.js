@@ -22,22 +22,22 @@ const siteConfig = {
   },
   products: [
     {
-      name: 'Amber Oud', category: 'Amaderado', label: 'Favorito', price: 189,
+      name: 'Amber Oud', category: 'Amaderado', gender: 'Hombre', label: 'Favorito', price: 189,
       description: 'Ámbar cálido, maderas y un fondo envolvente.',
       image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=85'
     },
     {
-      name: 'Rose Élégance', category: 'Floral', label: 'Nuevo', price: 169,
+      name: 'Rose Élégance', category: 'Floral', gender: 'Mujer', label: 'Nuevo', price: 169,
       description: 'Rosa fresca, flores blancas y una salida luminosa.',
       image: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85'
     },
     {
-      name: 'Citrus No. 5', category: 'Fresco', label: 'Diario', price: 149,
+      name: 'Citrus No. 5', category: 'Fresco', gender: 'Unisex', label: 'Diario', price: 149,
       description: 'Cítricos brillantes y notas limpias para todos los días.',
       image: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=900&q=85'
     },
     {
-      name: 'Velvet Night', category: 'Oriental', label: 'Edición especial', price: 219,
+      name: 'Velvet Night', category: 'Oriental', gender: 'Unisex', label: 'Edición especial', price: 219,
       description: 'Especias suaves, vainilla y un toque de misterio.',
       image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85'
     }
