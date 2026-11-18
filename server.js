@@ -35,8 +35,7 @@ const contentTypes = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
-  '.svg': 'image/svg+xml',
-  '.mp4': 'video/mp4'
+  '.svg': 'image/svg+xml'
 };
 const storage = createLocalStorage(root, siteConfig);
 const adminService = createAdminService({ storage, defaults: siteConfig });
@@ -78,10 +77,8 @@ const server = http.createServer((request, response) => {
   const filePath = path.resolve(root, `.${relativePath}`);
   const publicFile = publicFiles.has(path.relative(root, filePath));
   const imageDirectory = path.join(root, 'images');
-  const videoDirectory = path.join(root, 'videos');
   const publicImage = filePath.startsWith(`${imageDirectory}${path.sep}`);
-  const publicVideo = filePath.startsWith(`${videoDirectory}${path.sep}`);
-  if (!publicFile && !publicImage && !publicVideo) {
+  if (!publicFile && !publicImage) {
     sendText(response, 404, 'Not found');
     return;
   }
@@ -178,8 +175,18 @@ function loadLocalEnvironment() {
   }
 }
 
-server.listen(port, '127.0.0.1', () => {
-  console.log(`carlosstor disponible en http://localhost:${port}`);
-  console.log(`Panel de administración: http://localhost:${port}/admin.html`);
-  console.log('Guarda un archivo para actualizar la vista previa automáticamente.');
-});
+async function startServer() {
+  try {
+    await storage.cleanupImages?.();
+    server.listen(port, '127.0.0.1', () => {
+      console.log(`carlosstor disponible en http://localhost:${port}`);
+      console.log(`Panel de administración: http://localhost:${port}/admin.html`);
+      console.log('Guarda un archivo para actualizar la vista previa automáticamente.');
+    });
+  } catch (error) {
+    console.error('No se pudo limpiar .data/images:', error);
+    process.exitCode = 1;
+  }
+}
+
+startServer();

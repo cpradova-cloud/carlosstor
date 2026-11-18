@@ -19,12 +19,12 @@
     <div class="announcement" id="announcement"></div>
     <header class="site-header">
       <div class="header-inner">
-        <a class="wordmark" href="#inicio" aria-label="Inicio"><span class="wordmark-icon">c.</span><span id="brand-name">carlosstor</span></a>
+        <a class="wordmark" href="#inicio" aria-label="Inicio - carlosstor"><span class="wordmark-crop"><img src="images/logo-cs.png" alt="" /></span></a>
         <nav class="main-nav" aria-label="Navegación principal">
-          <a href="#catalogo">Perfumes</a><a href="#nosotros">Nuestra esencia</a><a href="#pagos">Pagos</a>
+          <a href="#catalogo">Perfumes</a><a href="#formato-tester">Formato Tester</a><a href="#pagos">Pagos</a>
         </nav>
-        <a class="admin-entry" href="#admin">Administrar</a>
-        <a class="bag-link" href="#catalogo"><span class="bag-icon" aria-hidden="true">⌕</span><span>Explorar</span></a>
+        <label class="header-search search-box"><input id="product-search" type="search" placeholder="Buscar perfume" aria-label="Buscar perfumes" autocomplete="off" /><svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><div id="header-search-suggestions" class="search-suggestions" role="listbox" hidden></div></label>
+        <a class="admin-entry" href="#admin" aria-label="Abrir administración"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path></svg></a>
       </div>
     </header>
 
@@ -54,8 +54,16 @@
       <section id="catalogo" class="catalog-section">
         <div class="section-top">
           <div><p class="eyebrow" id="catalog-eyebrow"></p><h2 id="catalog-title"></h2></div>
-          <label class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Buscar perfume" aria-label="Buscar perfumes" /><kbd>/</kbd></label>
         </div>
+        <label id="mobile-catalog-search" class="mobile-catalog-search" hidden>
+          <span class="sr-only">Buscar perfume en la colección</span>
+          <input id="mobile-product-search" type="search" placeholder="Buscar perfume" aria-label="Buscar perfume en la colección" autocomplete="off" />
+          <svg class="mobile-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.5"></circle>
+            <path d="m15.5 15.5 5 5"></path>
+          </svg>
+          <div id="mobile-search-suggestions" class="search-suggestions mobile-search-suggestions" role="listbox" hidden></div>
+        </label>
         <div class="catalog-filters">
           <div class="catalog-filter-row">
             <span class="catalog-filter-label">Para quién</span>
@@ -70,10 +78,10 @@
         <p id="empty-state" class="empty-state" hidden>No encontramos perfumes con esa búsqueda.</p>
       </section>
 
-      <section id="nosotros" class="editorial-section">
-        <div class="editorial-image">
-          <img id="editorial-image" alt="Detalle de la colección" />
-          <video id="editorial-video" class="editorial-video" autoplay muted loop playsinline preload="auto" hidden></video>
+      <section id="formato-tester" class="editorial-section">
+        <div class="editorial-carousel" aria-label="Marcas de perfume">
+          <div id="editorial-slides" class="editorial-slides"></div>
+          <div id="carousel-dots" class="carousel-dots" aria-label="Seleccionar imagen"></div>
         </div>
         <div class="editorial-copy"><p class="eyebrow" id="editorial-eyebrow"></p><h2 id="editorial-title"></h2><p id="editorial-description"></p><a id="editorial-link" class="text-link" href="#catalogo"><span id="editorial-link-label"></span><span aria-hidden="true">↗</span></a></div>
       </section>
@@ -87,11 +95,84 @@
       <section class="social-section">
         <p class="eyebrow" id="social-eyebrow"></p><h2 id="social-title"></h2>
         <div id="social-links" class="social-links"></div>
+        <p id="public-rating" class="public-rating" hidden></p>
       </section>
     </main>
 
-    <footer class="site-footer"><a class="wordmark footer-mark" href="#inicio"><span class="wordmark-icon">c.</span><span id="footer-brand"></span></a><p id="footer-copy"></p><a class="back-top" href="#inicio">Volver arriba ↑</a></footer>
+    <footer class="site-footer">
+      <p id="footer-copy"></p>
+      <nav class="footer-legal-links" aria-label="Información legal">
+        <button id="faq-open" class="terms-link" type="button">Preguntas Frecuentes</button>
+        <button id="terms-open" class="terms-link" type="button">Términos y Condiciones</button>
+        <button id="privacy-open" class="terms-link" type="button">Política de Privacidad</button>
+      </nav>
+    </footer>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <aside id="rating-widget" class="rating-widget" hidden aria-labelledby="rating-widget-title">
+      <button id="rating-widget-close" class="rating-widget-close" type="button" aria-label="Cerrar calificación">×</button>
+      <p id="rating-widget-title" class="rating-widget-title">¿Qué te parece nuestra tienda?</p>
+      <div id="rating-stars" class="rating-stars" role="group" aria-label="Calificar la tienda del 1 al 5"></div>
+      <p id="rating-widget-status" class="rating-widget-status" role="status" aria-live="polite"></p>
+    </aside>
+    <div id="image-lightbox" class="image-lightbox" hidden>
+      <div class="image-lightbox-backdrop" data-lightbox-close></div>
+      <section class="image-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+        <button id="lightbox-close" class="image-lightbox-close" type="button" aria-label="Cerrar imagen ampliada">✕</button>
+        <h2 id="lightbox-title" class="sr-only">Imagen ampliada del perfume</h2>
+        <img id="lightbox-image" class="image-lightbox-image" alt="" />
+        <p id="lightbox-specs" class="image-lightbox-specs"></p>
+        <div id="lightbox-dots" class="lightbox-dots" aria-label="Seleccionar foto del perfume"></div>
+      </section>
+    </div>
+    <div id="faq-modal" class="terms-modal" hidden>
+      <div class="terms-backdrop" data-faq-close></div>
+      <section class="terms-dialog" role="dialog" aria-modal="true" aria-labelledby="faq-title">
+        <button id="faq-close" class="terms-close" type="button" aria-label="Cerrar preguntas frecuentes">✕</button>
+        <h2 id="faq-title">Preguntas Frecuentes</h2>
+        <div class="terms-content">
+          <h3>1. ¿Qué es un perfume Tester y por qué tiene un precio menor?</h3>
+          <p>Un perfume <em>Tester</em> es una fragancia 100% original fabricada por la misma casa perfumera para exhibición en tiendas departamentales. Contiene exactamente la misma fórmula, concentración y fijación que el producto regular; la única diferencia es su presentación externa, ya que suele venir en caja de cartón sencilla "blanca o marrón" y, en algunos modelos, puede entregarse sin caja comercial o sin tapa decorativa.</p>
+          <h3>2. ¿Cómo puedo verificar la autenticidad del perfume?</h3>
+          <p>Todos nuestros perfumes conservan su código de lote (<em>batch code</em>) grabado o impreso tanto en la base del frasco como en su caja correspondiente "cuando la incluye", permitiendo verificar su autenticidad y fecha de fabricación. Además, cada ficha de nuestro catálogo muestra fotografías reales del frasco y su atomizador.</p>
+          <h3>3. ¿Cómo realizo mi compra?</h3>
+          <p>Selecciona la fragancia de tu interés en el catálogo y haz clic en <strong>"Consultar por WhatsApp"</strong>. Te atenderemos de forma personalizada para confirmar disponibilidad inmediata, coordinar el pago "Yape, Plin o transferencia bancaria" y registrar los datos de entrega.</p>
+          <h3>4. ¿Cuáles son las zonas de envío y modalidades de entrega?</h3>
+          <p>Actualmente realizamos <strong>entregas gratuitas "previo acuerdo"</strong> en puntos específicos: <strong>Márquez (Callao)</strong>, <strong>A.H. Víctor Raúl Haya de la Torre</strong>, <strong>Ventanilla (Plaza Vea)</strong> y <strong>Oquendo (Paradero Puente Oquendo)</strong>. Para entregas en otros distritos o zonas fuera de esta cobertura, el cliente puede enviar su motorizado de confianza o solicitar un servicio por aplicativo (InDrive, Uber Moto, etc.), asumiendo el costo del traslado directamente.</p>
+          <h3>5. ¿Qué ocurre si mi pedido llega con algún daño de transporte?</h3>
+          <p>Todos los pedidos salen embalados con protección reforzada. Para validar cualquier incidencia por daño físico o derrame durante el traslado, es indispensable grabar un video continuo de apertura (<em>unboxing</em>) desde que el paquete está completamente sellado y reportarlo dentro de las primeras 24 horas de ser recibido.</p>
+        </div>
+      </section>
+    </div>
+    <div id="terms-modal" class="terms-modal" hidden>
+      <div class="terms-backdrop" data-terms-close></div>
+      <section class="terms-dialog" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+        <button id="terms-close" class="terms-close" type="button" aria-label="Cerrar términos y condiciones">✕</button>
+        <h2 id="terms-title">Términos y Condiciones</h2>
+        <div class="terms-content">
+          <h3>1. Naturaleza de los Productos (Perfumes Tester)</h3>
+          <p>Todos los productos comercializados en <strong>carlosstor</strong> corresponden a presentaciones <em>tester</em> 100% originales de fábrica de marcas de diseñador, nicho y árabes. El cliente declara conocer que los frascos tester son unidades destinadas a pruebas en tienda, por lo que <strong>pueden ser entregados con o sin caja comercial de lujo y/o sin su tapa decorativa</strong>, garantizando siempre la autenticidad y fijación del líquido.</p>
+          <h3>2. Proceso de Compra y Atención</h3>
+          <p>Las compras, consultas de stock y coordinaciones se realizan directamente a través de nuestro canal oficial de <strong>WhatsApp</strong>.</p>
+          <h3>3. Zonas de Entrega y Envíos</h3>
+          <p>Realizamos <strong>entregas gratuitas "previo acuerdo"</strong> únicamente en puntos específicos: <strong>Márquez (Callao)</strong>, <strong>A.H. Víctor Raúl Haya de la Torre</strong>, <strong>Ventanilla (Plaza Vea)</strong> y <strong>Oquendo (Paradero Puente Oquendo)</strong>. Para entregas en otros distritos o zonas fuera de esta cobertura, el comprador podrá enviar su motorizado de confianza o solicitar un servicio por aplicativo (InDrive, Uber Moto, etc.), asumiendo el costo del traslado directamente.</p>
+          <h3>4. Cambios o Devoluciones</h3>
+          <p>Por la naturaleza del producto <em>tester</em>, solo se aplicará cambio en caso de fallas verificables en el atomizador o daños de transporte. Es indispensable grabar un video continuo del proceso de <strong>unboxing</strong>, desde que el paquete está cerrado hasta revisar el producto, para validar cualquier reclamo. Los perfumes tester pueden venir sin celofán, caja sellada o tapa decorativa.</p>
+          <h3>5. Medios de Pago y Reserva</h3>
+          <p>Los pedidos se confirman previo abono vía Yape o transferencia bancaria. El stock no se separa ni se reserva sin confirmación del pago.</p>
+        </div>
+      </section>
+    </div>
+    <div id="privacy-modal" class="terms-modal" hidden>
+      <div class="terms-backdrop" data-privacy-close></div>
+      <section class="terms-dialog" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+        <button id="privacy-close" class="terms-close" type="button" aria-label="Cerrar política de privacidad">✕</button>
+        <h2 id="privacy-title">Política de Privacidad</h2>
+        <div class="terms-content">
+          <p>En <strong>carlosstor</strong> usamos los datos que compartas únicamente para coordinar tu pedido, confirmar el pago y gestionar la entrega de tu perfume.</p>
+          <p>No vendemos ni compartimos tus datos con terceros para fines comerciales. La información se trata de forma confidencial y solo se comunica al operador de envío cuando sea necesario para entregar tu compra.</p>
+        </div>
+      </section>
+    </div>
     <div id="admin-overlay" class="admin-overlay" hidden>
       <iframe id="admin-frame" title="Administración de carlosstor" loading="lazy"></iframe>
     </div>

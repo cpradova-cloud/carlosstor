@@ -15,13 +15,17 @@ El ID y la contraseña anteriores son solo para pruebas locales. `.env` está ig
 
 ## Qué editar
 
-- `config.js`: marca, textos, imágenes, productos, precios en soles, pagos, redes y contacto.
+- `config.js`: marca, textos, imágenes, productos, precios en soles, stock disponible, contenido en ml, concentración, pagos, redes y contacto. Cada perfume puede tener hasta tres fotos; se administran desde el panel privado.
 - `styles.css`: colores, tipografías, espaciados y diseño adaptable a móvil.
 - `index.html`: estructura y secciones de la página.
 - `script.js`: búsqueda, filtros y comportamiento de los botones.
 - `admin.html`, `admin.css`, `admin.js`: panel privado de administración.
 - `modern.css`: refinamiento visual de la tienda.
 - `images/`: guarda aquí las fotos propias y usa rutas como `images/perfume.jpg` en `config.js`.
+
+Las imágenes subidas desde el administrador se guardan en `.data/images/` durante el desarrollo local y se sirven mediante `/api/images?key=...`. Al iniciar el servidor y después de guardar cambios, se eliminan automáticamente las imágenes locales que ya no estén referenciadas por productos, el carrusel o la imagen principal; las imágenes compartidas se conservan.
+
+Las calificaciones públicas se almacenan en `.data/ratings.json` localmente y en un Blob separado en Netlify. La tienda muestra el promedio y total cuando existe al menos una calificación; cada visitante puede ocultar o enviar el widget una sola vez desde su navegador.
 
 En `config.js` reemplaza los textos de ejemplo de pagos, redes y WhatsApp por datos reales antes de compartir la tienda. WhatsApp se configura como número con código de país, sin signo `+` ni espacios.
 

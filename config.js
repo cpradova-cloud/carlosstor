@@ -2,13 +2,13 @@
 // Las fotos pueden ser enlaces de imagen o archivos que guardes en la carpeta images/.
 const siteConfig = {
   brand: 'carlosstor',
-  announcement: 'ENVÍOS A TODO EL PERÚ · COMPRA FÁCIL POR WHATSAPP',
+  announcement: 'ENTREGAS GRATUITAS EN PUNTOS SELECCIONADOS · COMPRA FÁCIL POR WHATSAPP',
   hero: {
     eyebrow: 'TU NUEVA FIRMA OLFATIVA',
     title: 'Un aroma. Una forma de estar.',
-    description: 'Encuentra fragancias que hablan de ti. Una selección especial para convertir cada día en una buena primera impresión.',
+    description: 'Encuentra fragancias tester. De las mejores marcas de diseñador, nicho y árabes. Mismo aroma y fijación. A un precio accesible.',
     button: 'Descubrir perfumes',
-    note: 'Fragancias seleccionadas para acompañarte.',
+    note: 'Fragancias 100% originales',
     sideLabel: 'AROMAS PARA RECORDAR',
     image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=85',
     featuredKicker: 'Selección de la semana',
@@ -24,53 +24,61 @@ const siteConfig = {
     {
       name: 'Amber Oud', category: 'Amaderado', gender: 'Hombre', label: 'Favorito', price: 189,
       description: 'Ámbar cálido, maderas y un fondo envolvente.',
-      image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=85'
+      image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=85',
+      images: ['https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=85']
     },
     {
       name: 'Rose Élégance', category: 'Floral', gender: 'Mujer', label: 'Nuevo', price: 169,
       description: 'Rosa fresca, flores blancas y una salida luminosa.',
-      image: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85'
+      image: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85',
+      images: ['https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85']
     },
     {
       name: 'Citrus No. 5', category: 'Fresco', gender: 'Unisex', label: 'Diario', price: 149,
       description: 'Cítricos brillantes y notas limpias para todos los días.',
-      image: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=900&q=85'
+      image: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=900&q=85',
+      images: ['https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=900&q=85']
     },
     {
       name: 'Velvet Night', category: 'Oriental', gender: 'Unisex', label: 'Edición especial', price: 219,
       description: 'Especias suaves, vainilla y un toque de misterio.',
-      image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85'
+      image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85',
+      images: ['https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85']
     }
   ],
   editorial: {
-    eyebrow: 'MENOS RUIDO, MÁS ESENCIA',
-    title: 'El detalle que se queda contigo.',
-    description: 'Elegimos cada perfume pensando en cómo te hace sentir. Explora la colección, encuentra el tuyo y haz tu pedido de manera directa y sencilla.',
+    eyebrow: '¿CÓMO RECIBIRÁS TU PERFUME?',
+    title: 'Misma fragancia original. Formato de prueba.',
+    description: 'Para ofrecerte las mejores marcas al mejor precio, vendemos presentaciones tester reales. Ten en cuenta que pueden incluir o prescindir de su caja original y/o tapa, garantizándote siempre que el frasco contiene el líquido 100% original de la marca.',
     linkLabel: 'Ver toda la colección',
-    image: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=1200&q=85',
-    video: '/videos/perfume.mp4'
+    carousel: [
+      { image: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=1200&q=85', alt: 'Frascos de perfume de diseñador' },
+      { image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1200&q=85', alt: 'Perfume de colección' },
+      { image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=85', alt: 'Fragancias de nicho' }
+    ]
   },
   payments: {
     eyebrow: 'PAGO SIMPLE Y SEGURO',
     title: 'Paga como prefieras.',
     description: 'Coordinamos contigo por WhatsApp para confirmar el perfume, el método de pago y la entrega.',
     methods: [
-      { name: 'Yape', detail: '986570478', number: '01' },
-      { name: 'Transferencia BCP', detail: 'Agrega aquí tu cuenta o número de cuenta', number: '02' }
+      { name: 'Yape/Plin', detail: 'Escanea el QR para pagar', number: '01', action: 'qr', url: '/images/yape-qr-bw.png' },
+      { name: 'Transferencia BCP', detail: 'Solicítalo por WhatsApp', number: '02' },
+      { name: 'Comunícate con nosotros', detail: 'Ir a WhatsApp ↗', number: '03', action: 'whatsapp', url: 'https://wa.me/51986570478?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20realizar%20mi%20pago.' }
     ],
-    footnote: 'Los datos de pago son editables. Verifica que sean correctos antes de publicar la tienda.'
+    footnote: 'Por tu seguridad, los datos de pago se confirman exclusivamente por nuestro WhatsApp oficial.'
   },
   socials: {
-    eyebrow: 'SIGAMOS EN CONTACTO',
-    title: 'Nos vemos por aquí.',
-    instagram: { handle: '@tu_usuario', url: 'https://instagram.com/' },
-    tiktok: { handle: '@tu_usuario', url: 'https://tiktok.com/' }
+  eyebrow: 'SIGAMOS EN CONTACTO',
+  title: 'Nos vemos por aquí.',
+  instagram: { handle: 'Próximamente', url: '' },
+  tiktok: { handle: 'Próximamente', url: '' }
   },
   contact: {
-    whatsappNumber: '986570478', // Escribe tu número con código de país y sin + ni espacios, por ejemplo 51987654321.
+    whatsappNumber: '51986570478', // Escribe tu número con código de país y sin + ni espacios, por ejemplo 51987654321.
     whatsappMessage: 'Hola, quiero más información sobre este perfume.'
   },
-  footer: '© {year} carlosstor.'
+  footer: '© {year} carlosstor. Todos los derechos reservados.'
 };
 
 if (typeof window !== 'undefined') window.siteConfig = siteConfig;
